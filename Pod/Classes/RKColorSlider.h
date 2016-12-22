@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface RKColorSlider : UIControl
+
 @property (strong, nonatomic) UIView *previewView;
 @property (strong, nonatomic, readonly) UIColor *selectedColor;
 
-
+@property (nonatomic) IBInspectable CGFloat offset;
 
 
 @end

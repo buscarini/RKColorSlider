@@ -1,17 +1,19 @@
 {
   "name": "RKColorSlider",
   "version": "0.1.0",
-  "summary": "A short description of RKColorSlider.",
-  "description": "                       An optional longer description of RKColorSlider\n\n                       * Markdown format.\n                       * Don't worry about the indent, we strip it!\n",
-  "homepage": "https://github.com/<GITHUB_USERNAME>/RKColorSlider",
+  "summary": "A color picker similar to the color picker found in Facebook Slingshot",
+  "description": "A simple UIControl that you can use to choose a color with minimal UI. Very similar to the color picker found in Facebook's popular app Slingshot",
+  "homepage": "https://github.com/Rich86man/RKColorSlider",
+  "screenshots": "http://i.imgur.com/X2g6BxZ.png",
   "license": "MIT",
   "authors": {
     "rich86man": "richardbkirk@gmail.com"
   },
   "source": {
-    "git": "https://github.com/<GITHUB_USERNAME>/RKColorSlider.git",
+    "git": "https://github.com/rich86man/RKColorSlider.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/Rich86man",
   "platforms": {
     "ios": "7.0"
   },

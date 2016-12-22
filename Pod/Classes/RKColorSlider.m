@@ -51,6 +51,8 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
 
 - (void)setup
 {
+	self.offset = -80;
+	
     self.sliderImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.sliderImageView.image = [self sliderImage];
 
@@ -74,9 +76,13 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
 
 - (BOOL)beginTrackingWithTouch:(UITouch *)touch withEvent:(UIEvent *)event
 {
+
     [super beginTrackingWithTouch:touch withEvent:event];
-    [UIView animateWithDuration:0.3 animations:^{
-        self.previewView.frame = CGRectMake(-150, self.previewView.frame.origin.y,
+	
+	CGPoint point = [touch locationInView:self];
+	
+    [UIView animateWithDuration:0.1 animations:^{
+        self.previewView.frame = CGRectMake(point.x, point.y+self.offset,
                                 self.previewView.frame.size.width, self.previewView.frame.size.height);
         self.previewView.alpha = 1.0;
     }];
@@ -88,16 +94,17 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
 {
     [super continueTrackingWithTouch:touch withEvent:event];
     CGPoint point = [touch locationInView:self];
-    CGFloat hue = solveLinearEquation(point.y, 90, self.frame.size.height, 0, 1);
-    CGFloat s = solveLinearEquation(point.y, 30, 75, 0, 1);
-    CGFloat b = solveLinearEquation(point.y, 0, 30, 0, 1);
+    CGFloat hue = solveLinearEquation(self.frame.size.width-point.x, 90, self.frame.size.width, 0, 1);
+    CGFloat s = solveLinearEquation(self.frame.size.width-point.x, 30, 75, 0, 1);
+    CGFloat b = solveLinearEquation(self.frame.size.width-point.x, 0, 30, 0, 1);
     _selectedColor = [UIColor colorWithHue:hue saturation:s brightness:b alpha:1.0];
     self.previewView.backgroundColor = _selectedColor;
     [self sendActionsForControlEvents:UIControlEventValueChanged];
-        [UIView animateWithDuration:0.3 animations:^{
-            self.previewView.frame = CGRectMake(self.previewView.frame.origin.x, point.y,
+	    [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionBeginFromCurrentState animations:^{
+            self.previewView.frame = CGRectMake(point.x-self.previewView.frame.size.width/2, point.y+self.offset,
                                                 self.previewView.frame.size.width, self.previewView.frame.size.height);
-        }];
+		} completion:nil];
+	
     return YES;
 }
 
