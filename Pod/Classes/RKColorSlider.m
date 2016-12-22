@@ -30,6 +30,10 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
 
 @implementation RKColorSlider
 
+- (void) setShowsPreview:(BOOL)showsPreview {
+	_showsPreview = showsPreview;
+	self.previewView.hidden = !self.showsPreview;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -55,6 +59,7 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
 	
     self.sliderImageView = [[UIImageView alloc] initWithFrame:self.bounds];
     self.sliderImageView.image = [self sliderImage];
+	self.sliderImageView.contentMode = UIViewContentModeScaleAspectFit;
 
     [self addSubview:self.sliderImageView];
     
@@ -64,6 +69,12 @@ double solveLinearEquation(double input, double startValue, double endValue, dou
     self.previewView.layer.masksToBounds = YES;
     [self addSubview:self.previewView];
     self.clipsToBounds = NO;
+	self.previewView.hidden = !self.showsPreview;
+}
+
+- (void) layoutSubviews {
+	[super layoutSubviews];
+	self.sliderImageView.frame = self.bounds;
 }
 
 - (UIImage *)sliderImage

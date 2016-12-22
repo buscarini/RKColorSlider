@@ -14,6 +14,7 @@
 @property (strong, nonatomic, readonly) UIColor *selectedColor;
 
 @property (nonatomic) IBInspectable CGFloat offset;
+@property (nonatomic) IBInspectable BOOL showsPreview;
 
 
 @end
